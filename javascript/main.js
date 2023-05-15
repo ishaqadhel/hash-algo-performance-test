@@ -84,6 +84,100 @@ async function main() {
 
     /* #endregion  /**======== Text File =========== */
 
+    /* #region  /**=========== Audio File =========== */
+    
+    const audio500 = fs.readFileSync(`${assetsFolderPath}/audio-500kb.mp3`);
+    const audio1000 = fs.readFileSync(`${assetsFolderPath}/audio-1mb.mp3`);
+    const audio2000 = fs.readFileSync(`${assetsFolderPath}/audio-2mb.mp3`);
+    const audio5000 = fs.readFileSync(`${assetsFolderPath}/audio-5mb.mp3`);
+    const audio10000 = fs.readFileSync(`${assetsFolderPath}/audio-10mb.mp3`);
+
+    console.log ('----AUDIO FILE----');
+
+    /* #region  /**=========== Audio File - 500 KB =========== */
+    const startTime6 = performance.now();
+    const hash6 = crypto.createHash(hashAlgorithm);
+    hash6.update(audio500);
+    const hashValue6 = hash6.digest('hex');
+    const endTime6 = performance.now();
+    const elapsedTime6 = endTime6 - startTime6;
+
+    console.log('----500KB----');
+    console.log(`Hash value: ${hashValue6}`);
+    console.log(`Elapsed time: ${elapsedTime6} milliseconds`);
+    /* #endregion  /**======== Audio File - 500 KB =========== */
+    
+    /* #region  /**=========== Audio File - 1 MB =========== */
+    const startTime7 = performance.now();
+    const hash7 = crypto.createHash(hashAlgorithm);
+    hash7.update(audio1000);
+    const hashValue7 = hash7.digest('hex');
+    const endTime7 = performance.now();
+    const elapsedTime7 = endTime7 - startTime7;
+
+    console.log('----1MB----');
+    console.log(`Hash value: ${hashValue7}`);
+    console.log(`Elapsed time: ${elapsedTime7} milliseconds`);
+    /* #endregion  /**======== Audio File - 1 MB =========== */
+
+    /* #region  /**=========== Audio File - 2 MB =========== */
+    const startTime8 = performance.now();
+    const hash8 = crypto.createHash(hashAlgorithm);
+    hash8.update(audio2000);
+    const hashValue8 = hash8.digest('hex');
+    const endTime8 = performance.now();
+    const elapsedTime8 = endTime8 - startTime8;
+
+    console.log('----2MB----');
+    console.log(`Hash value: ${hashValue8}`);
+    console.log(`Elapsed time: ${elapsedTime8} milliseconds`);
+    /* #endregion  /**======== Audio File - 2 MB =========== */
+
+    /* #region  /**=========== Audio File - 5 MB =========== */
+    const startTime9 = performance.now();
+    const hash9 = crypto.createHash(hashAlgorithm);
+    hash9.update(audio5000);
+    const hashValue9 = hash9.digest('hex');
+    const endTime9 = performance.now();
+    const elapsedTime9 = endTime9 - startTime9;
+
+    console.log('----5MB----');
+    console.log(`Hash value: ${hashValue9}`);
+    console.log(`Elapsed time: ${elapsedTime9} milliseconds`);
+    /* #endregion  /**======== Audio File - 5 MB =========== */
+
+    /* #region  /**=========== Audio File - 10 MB =========== */
+    const startTime10 = performance.now();
+    const hash10 = crypto.createHash(hashAlgorithm);
+    hash10.update(audio10000);
+    const hashValue10 = hash10.digest('hex');
+    const endTime10 = performance.now();
+    const elapsedTime10 = endTime10 - startTime10;
+
+    console.log('----10MB----');
+    console.log(`Hash value: ${hashValue10}`);
+    console.log(`Elapsed time: ${elapsedTime10} milliseconds`);
+    /* #endregion  /**======== Audio File - 10 MB =========== */
+
+    /* #endregion  /**======== Audio File =========== */
+
+    /* #region  /**=========== Result =========== */
+    const data = [
+        { fileSize: '500 KB', fileType: '.txt', hashTime: `${elapsedTime} milliseconds` },
+        { fileSize: '1 MB', fileType: '.txt', hashTime: `${elapsedTime2} milliseconds` },
+        { fileSize: '2 MB', fileType: '.txt', hashTime: `${elapsedTime3} milliseconds` },
+        { fileSize: '5 MB', fileType: '.txt', hashTime: `${elapsedTime4} milliseconds` },
+        { fileSize: '10 MB', fileType: '.txt', hashTime: `${elapsedTime5} milliseconds` },
+        { fileSize: '500 KB', fileType: '.mp3', hashTime: `${elapsedTime6} milliseconds` },
+        { fileSize: '1 MB', fileType: '.mp3', hashTime: `${elapsedTime7} milliseconds` },
+        { fileSize: '2 MB', fileType: '.mp3', hashTime: `${elapsedTime8} milliseconds` },
+        { fileSize: '5 MB', fileType: '.mp3', hashTime: `${elapsedTime9} milliseconds` },
+        { fileSize: '10 MB', fileType: '.mp3', hashTime: `${elapsedTime10} milliseconds` },
+      ];
+      
+    console.table(data, ['fileSize', 'fileType', 'hashTime']);
+    /* #endregion  /**======== Result =========== */
+
 }
 
 main();
