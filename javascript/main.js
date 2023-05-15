@@ -6,7 +6,7 @@ const { performance } = require('perf_hooks');
 
 async function main() {
     const assetsFolderPath = '/Users/ishaqadheltyo/git/github/its/final-thesis/hash-algo-performance-test/assets';
-    const hashAlgorithm = 'sha1';
+    const hashAlgorithm = 'md5';
 
     /* #region  /**=========== Text File =========== */
     const text500 = fs.readFileSync(`${assetsFolderPath}/text-500kb.txt`);
@@ -161,7 +161,87 @@ async function main() {
 
     /* #endregion  /**======== Audio File =========== */
 
+    /* #region  /**=========== Video File =========== */
+    
+    const video500 = fs.readFileSync(`${assetsFolderPath}/video-500kb.mp4`);
+    const video1000 = fs.readFileSync(`${assetsFolderPath}/video-1mb.mp4`);
+    const video2000 = fs.readFileSync(`${assetsFolderPath}/video-2mb.mp4`);
+    const video5000 = fs.readFileSync(`${assetsFolderPath}/video-5mb.mp4`);
+    const video10000 = fs.readFileSync(`${assetsFolderPath}/video-10mb.mp4`);
+
+    console.log ('----VIDEO FILE----');
+
+    /* #region  /**=========== Video File - 500 KB =========== */
+    const startTime11 = performance.now();
+    const hash11 = crypto.createHash(hashAlgorithm);
+    hash11.update(video500);
+    const hashValue11 = hash11.digest('hex');
+    const endTime11 = performance.now();
+    const elapsedTime11 = endTime11 - startTime11;
+
+    console.log('----500KB----');
+    console.log(`Hash value: ${hashValue11}`);
+    console.log(`Elapsed time: ${elapsedTime11} milliseconds`);
+    /* #endregion  /**======== Video File - 500 KB =========== */
+
+    /* #region  /**=========== Video File - 1 MB =========== */
+    const startTime12 = performance.now();
+    const hash12 = crypto.createHash(hashAlgorithm);
+    hash12.update(video1000);
+    const hashValue12 = hash12.digest('hex');
+    const endTime12 = performance.now();
+    const elapsedTime12 = endTime12 - startTime12;
+
+    console.log('----1MB----');
+    console.log(`Hash value: ${hashValue12}`);
+    console.log(`Elapsed time: ${elapsedTime12} milliseconds`);
+    /* #endregion  /**======== Video File - 1 MB =========== */
+
+    /* #region  /**=========== Video File - 2 MB =========== */
+    const startTime13 = performance.now();
+    const hash13 = crypto.createHash(hashAlgorithm);
+    hash13.update(video2000);
+    const hashValue13 = hash13.digest('hex');
+    const endTime13 = performance.now();
+    const elapsedTime13 = endTime13 - startTime13;
+
+    console.log('----2MB----');
+    console.log(`Hash value: ${hashValue13}`);
+    console.log(`Elapsed time: ${elapsedTime13} milliseconds`);
+    /* #endregion  /**======== Video File - 2 MB =========== */
+
+    /* #region  /**=========== Video File - 5 MB =========== */
+    const startTime14 = performance.now();
+    const hash14 = crypto.createHash(hashAlgorithm);
+    hash14.update(video5000);
+    const hashValue14 = hash14.digest('hex');
+    const endTime14 = performance.now();
+    const elapsedTime14 = endTime14 - startTime14;
+
+    console.log('----5MB----');
+    console.log(`Hash value: ${hashValue14}`);
+    console.log(`Elapsed time: ${elapsedTime14} milliseconds`);
+    /* #endregion  /**======== Video File - 5 MB =========== */
+
+    /* #region  /**=========== Video File - 10 MB =========== */
+    const startTime15 = performance.now();
+    const hash15 = crypto.createHash(hashAlgorithm);
+    hash15.update(video10000);
+    const hashValue15 = hash15.digest('hex');
+    const endTime15 = performance.now();
+    const elapsedTime15 = endTime15 - startTime15;
+
+    console.log('----10MB----');
+    console.log(`Hash value: ${hashValue15}`);
+    console.log(`Elapsed time: ${elapsedTime15} milliseconds`);
+    /* #endregion  /**======== Video File - 10 MB =========== */
+
+    /* #endregion  /**======== Video File =========== */
+
     /* #region  /**=========== Result =========== */
+    console.log('\n----RESULT----');
+    console.log(`Hash Algorithm: ${hashAlgorithm}`);
+
     const data = [
         { fileSize: '500 KB', fileType: '.txt', hashTime: `${elapsedTime} milliseconds` },
         { fileSize: '1 MB', fileType: '.txt', hashTime: `${elapsedTime2} milliseconds` },
@@ -173,7 +253,12 @@ async function main() {
         { fileSize: '2 MB', fileType: '.mp3', hashTime: `${elapsedTime8} milliseconds` },
         { fileSize: '5 MB', fileType: '.mp3', hashTime: `${elapsedTime9} milliseconds` },
         { fileSize: '10 MB', fileType: '.mp3', hashTime: `${elapsedTime10} milliseconds` },
-      ];
+        { fileSize: '500 KB', fileType: '.mp4', hashTime: `${elapsedTime11} milliseconds` },
+        { fileSize: '1 MB', fileType: '.mp4', hashTime: `${elapsedTime12} milliseconds` },
+        { fileSize: '2 MB', fileType: '.mp4', hashTime: `${elapsedTime13} milliseconds` },
+        { fileSize: '5 MB', fileType: '.mp4', hashTime: `${elapsedTime14} milliseconds` },
+        { fileSize: '10 MB', fileType: '.mp4', hashTime: `${elapsedTime15} milliseconds` },
+    ];
       
     console.table(data, ['fileSize', 'fileType', 'hashTime']);
     /* #endregion  /**======== Result =========== */
